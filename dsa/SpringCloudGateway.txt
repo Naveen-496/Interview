@@ -1,0 +1,77 @@
+
+Api Gateway:
+    An api gateway acts as a single entry point for all our backend services in a distributed
+    microservices architecture.
+
+    It can be used also as:
+    1. Routing
+    2. Enriching headers and data
+    3. Authentication and Authorization
+    4. Caching
+    5. Rate limiting, throttling, circuit breakers
+    6. Load Balancing
+    7. Versioning
+    8. Business flow control
+    9. Much more...
+
+
+    Routing:
+
+    1. Simple Routing
+    2. Filter By:
+       * Path
+       * Header
+       * Data
+    3. External routing
+
+Spring Cloud Gateway
+
+    * Built on Spring Framework 5, Project Reactor, and Spring Boot 2 *
+    * Able to match routes on any request attribute
+    * Predicates and filters are specific to routes
+    * Circuit breaker integration
+    * Spring cloud DiscoveryClient integration
+    * Easy to write Predicates and Filters
+    * Request Rate Limiting
+    * Path Rewriting
+
+    * Bean around for a while
+    * Built on Spring Webflux
+    * Routing
+    * Enriching ( headers, body )
+    * Circuit breakers
+    * Filter chains
+    * etc...
+
+    1. Route:
+        A basic building block of a gateway. It is defined by an ID, a destination URI,
+        a collection of predicates, and a collection of filters.
+        a route is matched if the aggregate predicate is true.
+
+    2. Predicate:
+        This is a Java 8 Function Predicate. The input type is a Spring Framework
+        ServerWebExchange. This lets you match on anything from HTTP request such as headers,
+        parameters, etc...
+
+
+    Pros and Cons of SCG
+    Pros:
+        * Spring Ecosystem Integration
+        * Reactive programming support
+        * Simple configuration
+        * Easily moved between environments
+        * Flexible and customizable
+        * It's on the Dev field
+
+    Cons:
+        * New to Spring
+        * Or, to Reactive Programming
+
+Global Filters:
+    * Applied on all requests
+    * Can be several, ordered filters
+    * Can contain pre and post logic
+    * Use Cases:
+        * Logging
+        * Global context enrichment
+        * Common response pattern

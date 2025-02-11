@@ -1,0 +1,33 @@
+1. Functional Requirements
+
+    * A parking lot should have multiple floors.
+    * Each floor should have multiple parking spots categorized by type:
+        Compact
+        Large
+        Motorcycle
+        Handicapped
+
+    * A Vehicle can enter and exit the parking lot
+    * Tye system should track available and occupied spots
+    * A ticket is generated when a vehicle enters, and payment is required before exit.
+    * The system should support different parking rates based on duration.
+
+1.2 Non-Functional Requirements
+    * The system should be scalable for large parking lots.
+    * It should be fault-tolerant to handle failures.
+    * The design should allow extensibility (e.g., adding EV charging spots)
+
+1.3 High-Level Components
+
+    1. Parking Lot
+        * Manages floors and spots
+    2. Parking Floor
+        * Manages parking spots on a single floor
+    3. Parking Spot
+        * Represents a single parking space.
+    4. Vehicle
+        * Represents different types of vehicles.
+    5. Ticket
+        * Represents an entry ticket.
+    6. Payment
+        * Handles fee calculation and payment processing
