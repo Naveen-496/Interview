@@ -1,0 +1,19 @@
+
+Garbage Collection in java is an automatic memory management process that reclaims memory 
+occupied by objects that are no longer in use.
+
+The Java Virtual Machine (JVM) handles garbage collection, relieving developers from manually
+allocating and deallocating memory.
+
+The process involves identifying and marking objects that are no longer reachable or referenced 
+by the program. These unreachable objects are then considered garbage and are removed from memory,
+freeing up memory for new objects.
+
+Different algorithms exists.
+
+1. Mark and Sweep:
+    Marks reachable objects and then sweeps away unmarked ones.
+
+2. Generational:
+    Divides memory into generations ( young and old ) and collects garbage
+    more frequently in younger generations where objects are more likely to become garbage.    
