@@ -18,7 +18,7 @@ public class Palindrome2 {
 
     public static boolean isValidPalindromeTwoPointers(String s) {
         int left = 0, right = s.length() - 1;
-        while (left <= right) {
+        while (left < right) {
             if (s.charAt(left) != s.charAt(right)) {
                 return isPalindrome(s.substring(0, left) + s.substring(left + 1))
                         || isPalindrome(s.substring(0, right) + s.substring(right + 1));
@@ -31,7 +31,7 @@ public class Palindrome2 {
 
     public static boolean isPalindrome(String s) {
         int left = 0, right = s.length() - 1;
-        while (left <= right) {
+        while (left < right) {
             if (s.charAt(left) != s.charAt(right)) {
                 return false;
             }
