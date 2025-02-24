@@ -1,0 +1,82 @@
+Spring Core 
+
+1. Bean scopes available in Spring
+    6 Bean scopes in spring
+    1. Singleton ( default ):
+        A single instance of the bean per spring container.
+        Ex:
+        @Bean
+        @Scope("singleton") // not required as the default scope is singleton
+        public MyBean myBean() { return new MyBean(); }
+
+    2. Prototype: 
+        A new instance is created every time the bean is requested
+        Ex: 
+        @Bean
+        @Scope("prototype")
+        public MyBean myBean() { return new MyBean(); }
+
+    3. Request (Web Only):
+        A new bean instance per HTTP request
+        Ex:
+        @Bean
+        @Scope(value = WebApplicationContext.SCOPE_REQUEST)
+        public MyBean myBean() { return new MyBean(); }
+
+    4. Session (Web Only):
+        A new bean instance per HTTP session
+        Ex: 
+        @Bean
+        @Scope(value = WebApplicationContext.SCOPE_SESSION)
+        public MyBean myBean() { return new MyBean(); }
+
+    5. Application (Web Only):
+        A single instance per ServletContext
+        Ex: 
+        @Bean
+        @Scope(value = WebApplicationContext.SCOPE_APPLICATION)
+        public MyBean myBean() { return new MyBean(); }
+
+    6. Global Session (Web Only):
+        One instance per global session
+        Ex: 
+        @Bean
+        @Scope(value = WebApplicationContext.SCOPE_GLOBAL_SESSION)
+        public MyBean myBean() { return new MyBean(); }
+
+    ✅ Key takeaway:
+
+        Use Singleton for shared services.
+        Use Prototype for stateful beans.
+        Use Request/Session for web applications where user-specific data is needed.    
+
+
+    Scope	                  When to Use                                	Example
+    Singleton	            Shared, stateless beans	                 Logging, Database Connection
+    Prototype	            New instance per request	             Unique request ID generator
+    Request	                Per HTTP request	                     Request-specific tracking
+    Session               	Per user session	                     Shopping Cart
+    Application	            Shared across app	                     Global configuration
+    Global Session          Portlet apps	                         Global user session   
+
+    2. What is autowiring and explain different modes of autowiring?
+        Autowiring is a powerful feature in Spring that automatically injects dependencies between collaborating beans without requiring explicit configuration. Think of it as Spring's way of intelligently figuring out which components need to be connected together.
+
+        no (Default):
+            This means autowiring is turned off, and you need to explicitly define dependencies through XML configuration or annotations.    
+
+        byName:
+            Spring matches the bean property name with beans defined in the context.    
+
+        byType:
+            Spring looks for beans matching the property's type. Here's an example:    
+
+        constructor:
+            Similar to byType, but works with constructor arguments instead of setters  
+
+
+    3. What do you understand by Bean Wiring.
+    DEFINITIONS:
+        Bean Wiring: The process of connecting beans (objects) together in the Spring container by identifying their dependencies and relationships.
+        Explicit Wiring: When dependencies between beans are manually defined in configuration files or through annotations.
+        Auto Wiring: When Spring automatically injects dependencies between beans based on configured rules and patterns.          
