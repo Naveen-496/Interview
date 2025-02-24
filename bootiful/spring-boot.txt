@@ -1,0 +1,40 @@
+
+1. What is Spring Boot and why choose Spring Boot over Spring Framework?
+
+    Spring Boot is an opinionated, convention-over-configuration extension of the Spring framework designed to simplify the bootstrapping and development of production-grade Spring applications. It abstracts away much of the boilerplate configuration and dependency management, enabling developers to focus on business logic rather than infrastructure setup. Built on top of the Spring framework, Spring Boot leverages its core features (like dependency injection and AOP) while adding layers of automation and simplification.
+
+    Why Choose Spring Boot Over the Traditional Spring Framework?
+
+    1. Auto Configuration
+    2. Starter Dependencies
+    3. Embedded Servers
+    4. Production Ready features
+    5. Rapid development and dev tools
+    6. Opinonated Defaults
+    7. Seamless Integration with Spring Ecosystem 
+
+
+2. What is the purpose of the @SpringBootApplication annotation in a Spring Boot application ?
+
+    The @SpringBootApplication annotation is a key enabler of Spring Boot’s convention-over-configuration philosophy, acting as the "launchpad" for Spring Boot applications.
+
+    1. Core Functionality
+    It combines three essential annotations into one, streamlining setup:
+
+    @Configuration: Marks the class as a source of bean definitions (e.g., @Bean methods).
+
+    @EnableAutoConfiguration: Triggers Spring Boot’s auto-configuration magic, which configures beans automatically based on dependencies (e.g., setting up a DataSource if H2 is in the classpath).
+
+    @ComponentScan: Enables component scanning for @Component, @Service, @Repository, etc., in the current package and subpackages.
+
+    Without @SpringBootApplication, you’d need to declare these annotations separately, adding boilerplate.
+
+    2. Entry Point for the Application
+    It’s typically applied to the main class, serving as the entry point for the app. When the main() method runs:
+
+    Auto-configuration kicks in: Spring Boot evaluates the classpath, environment, and existing beans to configure the app dynamically (e.g., embedding Tomcat if spring-boot-starter-web is present).
+
+    Component scanning starts: Discovers and registers Spring-managed components (controllers, services, etc.) without manual XML or Java configuration.
+
+    4. Customization Flexibility
+    While it provides defaults, it allows overrides for advanced use cases:
