@@ -78,5 +78,147 @@ Spring Core
     3. What do you understand by Bean Wiring.
     DEFINITIONS:
         Bean Wiring: The process of connecting beans (objects) together in the Spring container by identifying their dependencies and relationships.
+
         Explicit Wiring: When dependencies between beans are manually defined in configuration files or through annotations.
-        Auto Wiring: When Spring automatically injects dependencies between beans based on configured rules and patterns.          
+
+        Auto Wiring: When Spring automatically injects dependencies between beans based on configured rules and patterns.
+
+
+    4. Explain Bean life cycle in Spring Bean Factory Container
+
+        Bean Definition: The metadata that tells the Spring container how to create and configure a bean. 
+
+        Bean Instantiation: The process of creating a new instance of a bean using either a constructor or factory method.
+
+        Bean Population: The phase where Spring sets properties and dependencies defined in the bean definition.
+
+        Pre-Initialization: The phase before the bean is fully initialized where custom logic can be executed.
+
+        Post-Initialization: The phase after initialization where additional custom processing can occur.
+
+        Bean Destruction: The process of cleaning up resources when the container is shut down.
+
+        @Component
+        public class CompleteLifecycleBean implements InitializingBean, DisposableBean {
+            private String connectionString;
+
+            // Constructor
+            public CompleteLifecycleBean() {
+                System.out.println("1. Constructor called");
+            }
+
+            // Property injection
+            @Value("${db.connection}")
+            public void setConnectionString(String connectionString) {
+                System.out.println("2. Properties set");
+                this.connectionString = connectionString;
+            }
+
+            // Post-construct initialization
+            @PostConstruct
+            public void init() {
+                System.out.println("3. Post-construct initialization");
+            }
+
+            // InitializingBean implementation
+            @Override
+            public void afterPropertiesSet() {
+                System.out.println("4. After properties set - ready for use");
+            }
+
+            // Business method
+            public void performWork() {
+                System.out.println("5. Bean performing work");
+            }
+
+            // Pre-destroy cleanup
+            @PreDestroy
+            public void preDestroy() {
+                System.out.println("6. Pre-destroy called");
+            }
+
+            // DisposableBean implementation
+            @Override
+            public void destroy() {
+                System.out.println("7. Bean being destroyed");
+            }
+        }             
+
+
+    5.  How is the configuration meta data provided to the spring container?
+
+        XML Configuration: A traditional approach where bean definitions and their relationships are specified in XML files using predefined schema and tags.
+
+        Java-based Configuration: A modern approach using Java classes annotated with @Configuration to define beans and their dependencies programmatically.
+
+        Annotation-based Configuration: Configuration achieved through annotations like @Component, @Service, @Repository directly in your Java classes.
+
+        Mixed Configuration: A hybrid approach combining two or more configuration methods to leverage their respective advantages.
+
+
+    6. What are spring beans, dependency injection and Ioc container
+
+    Spring Beans: Java objects that are instantiated, assembled, and managed by the Spring IoC container. These objects form the backbone of your application.
+
+    Dependency Injection (DI): A design pattern where components receive their dependencies from an external source rather than creating them internally.
+
+    IoC Container: A core Spring framework component that manages the complete lifecycle of Spring beans, from creation to destruction, implementing the IoC principle.
+
+    7. Difference between constructor injection and setter injection
+            Key Differences between Constructor and Setter Injection:
+
+            Constructor Injection:
+
+            Ensures required dependencies are available at creation time
+            Supports immutability (fields can be final)
+            Prevents partial initialization
+            Better for mandatory dependencies
+
+            Setter Injection:
+
+            More flexible, can change dependencies after creation
+            Better for optional dependencies
+            More readable when there are many dependencies
+            Allows for circular dependencies (though these should be avoided)
+
+
+    7. What is a spring configuration file?
+
+    A Spring configuration file serves as a blueprint that tells Spring how to construct and manage your application's components. Think of it as an instruction manual that Spring follows to build your application.
+
+
+
+    8. What are the features of Spring Framework?
+
+    Inversion of Control (IoC): The core feature where Spring manages object creation and lifecycle, inverting traditional control flow.
+
+    Aspect-Oriented Programming (AOP): A programming paradigm that allows separation of cross-cutting concerns from business logic.
+    
+    Spring MVC: A web framework that implements the Model-View-Controller pattern for building web applications.
+
+    Data Access: A comprehensive data integration framework supporting multiple data access technologies.
+
+    Transaction Management: A consistent abstraction for transaction handling across different transaction APIs.         
+
+
+    9. What is Spring Framework?
+    
+    Spring Framework is an open-source, lightweight application framework that provides comprehensive infrastructure support for developing Java applications. It's a framework of frameworks that handles the infrastructure so developers can focus on application logic.
+
+    The framework follows key principles that make it powerful:
+
+    Don't Repeat Yourself (DRY)
+    Inversion of Control (IoC)
+    Dependency Injection (DI)
+    Aspect-Oriented Programming (AOP)
+    Convention over Configuration
+
+    Spring Framework is a comprehensive ecosystem that:
+
+    Manages object lifecycles
+    Handles cross-cutting concerns
+    Provides enterprise features
+    Simplifies database access
+    Supports web development
+    Enables security implementation
+    Facilitates testing
