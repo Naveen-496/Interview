@@ -1,0 +1,33 @@
+ACID: Atomicity, Consistency, Isolation, Durability
+
+claude: 
+https://claude.ai/chat/81b05039-b3fe-48c1-889b-d163ccc881d3
+
+1. Atomicity: 
+        Atomicity ensures that a transaction is treated as a single, indivisible unit of work that either completely succeeds or completely fails. There are no partial transactions.
+
+        Means one unit, ex: transactions, the transactions may either succeed or failure. There is no
+        partial succeed or partial failure.
+
+        Example:
+        Imagine a bank transfer where you need to debit one account and credit another:
+
+        BEGIN;
+            -- Debit from account A
+            UPDATE accounts SET balance = balance - 500 WHERE account_id = 1;
+            
+            -- Credit to account B
+            UPDATE accounts SET balance = balance + 500 WHERE account_id = 2;
+        COMMIT
+
+        If the second update fails (perhaps account #2 doesn't exist), atomicity ensures that the first update is also rolled back. The money doesn't just disappear—it stays in account #1 as if the transaction never happened.
+
+2. Consistency: 
+    Consistency refers to the guarantee that a database transaction will only bring the database from one valid state to another valid state, maintaining all predefined rules and constraints.
+
+3. Isolation: 
+
+    Isolation ensures that concurrent transactions execute as if they were running sequentially, without interference from each other, even though they may actually run in parallel.
+
+4. Durability
+    Durability guarantees that once a transaction is committed, it remains committed even in the case of system failure (power outage, crash, etc.). Committed data is permanently saved.        
