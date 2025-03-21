@@ -20,7 +20,6 @@ abstract class Vehicle {
     private final String licencePlate;
     private final VehicleType vehicleType;
 
-
     Vehicle(String licencePlate, VehicleType vehicleType) {
         this.licencePlate = licencePlate;
         this.vehicleType = vehicleType;
@@ -46,7 +45,6 @@ class MotorCycle extends Vehicle {
         super(licencePlate, VehicleType.MOTORCYCLE);
     }
 }
-
 
 class ParkingSpot {
 
@@ -121,6 +119,30 @@ class ParkingFloor {
 }
 
 class ParkingLot {
+    private String name;
+    private List<ParkingFloor> parkingFloors;
+
+    public ParkingLot(String name) {
+        this.name = name;
+        this.parkingFloors = new ArrayList<>();
+    }
+
+    public void addFloor(ParkingFloor floor) {
+        parkingFloors.add(floor);
+    }
+
+    public Optional<ParkingSpot> findAvailableSpot(VehicleType vehicleType) {
+        ParkingSpotType spotType = switch (vehicleType) {
+            case CAR -> ParkingSpotType.COMPACT;
+            case MOTORCYCLE -> ParkingSpotType.MOTORCYCLE;
+            case TRUCK -> ParkingSpotType.LARGE;
+            case HANDICAPPED -> ParkingSpotType.HANDICAPPED;
+        };
+
+        return parkingFloors.stream()
+                .flatMap(floor -> floor.findAvailableSpot(spotType).stream())
+                .findFirst();
+    }
 
 }
 
